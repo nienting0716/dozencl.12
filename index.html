@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蒔貳單簧管重奏團 | Dozen Clarinet Ensemble</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // 團徽核心底色：莫蘭迪深灰綠
+                        'dozen-slate': '#3D4D4F', 
+                        // 團徽文字色：淺米白
+                        'dozen-light': '#F2EDEA',
+                        // 輔助點綴色：深炭灰色
+                        'dozen-dark': '#2F3C3D',
+                    },
+                    fontFamily: {
+                        'serif': ['"Noto Serif TC"', 'serif'],
+                        'sans': ['"Noto Sans TC"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* 1. 基礎設定：全網頁使用團徽底色 */
+        body { 
+            background-color: #3D4D4F; 
+            color: #F2EDEA; 
+            scroll-behavior: smooth;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        /* 2. 移除所有發光效果，改用純粹的質感邊框與透明度變化 */
+        .card-modern {
+            background-color: #354345;
+            border: 1px solid rgba(242, 237, 234, 0.1);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+        }
+        .card-modern:hover {
+            border-color: rgba(242, 237, 234, 0.3);
+            transform: translateY(-8px);
+        }
+
+        /* 3. 照片展示區域設定：確保圖片比例一致 (3:2) */
+        .concert-img-container {
+            aspect-ratio: 3 / 2;
+            overflow: hidden;
+            background-color: #2F3C3D;
+        }
+        .concert-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .card-modern:hover .concert-img-container img {
+            transform: scale(1.08);
+        }
+
+        /* 4. 自定義按鈕：低調專業的實色按鈕 */
+        .btn-primary {
+            background-color: #F2EDEA;
+            color: #3D4D4F;
+            padding: 10px 24px;
+            border-radius: 2px; /* 方正顯得更專業 */
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        .btn-primary:hover {
+            background-color: #D1CAC6;
+        }
+
+        /* 5. 顆粒感疊加層 (呼應主視覺質感) */
+        .grain-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="grain-overlay"></div>
+
+    <!-- 導覽列 (只留 Logo) -->
+    <nav class="fixed w-full z-50 bg-dozen-slate/95 backdrop-blur-sm border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
+            <a href="#" class="h-12 flex items-center">
+                <!-- 團徽 Logo (當在您的電腦上時會讀取旁邊的 logo.jpg) -->
+                <img src="logo.jpg" alt="Dozen Clarinet Ensemble" class="h-full w-auto" onerror="this.src='https://placehold.co/200x80/3D4D4F/F2EDEA?text=Dozen+Logo'">
+            </a>
+            
+            <div class="hidden md:flex space-x-10 text-sm font-light tracking-[0.2em] text-dozen-light/80 uppercase">
+                <a href="#about" class="hover:text-dozen-light transition">About</a>
+                <a href="#performances" class="hover:text-dozen-light transition">Archives</a>
+                <a href="#members" class="hover:text-dozen-light transition">Members</a>
+                <a href="#contact" class="hover:text-dozen-light transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首頁主視覺 -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-dozen-slate/60 z-10"></div>
+            <!-- 主視覺圖 (當在您的電腦上時會讀取旁邊的 event1.jpg) -->
+            <img src="event1.jpg" alt="Main Visual" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1599420186946-7b6fb4e917d0?q=80&w=2070&auto=format&fit=crop'">
+        </div>
+        
+        <div class="relative z-20 text-center px-6" data-aos="fade-up" data-aos-duration="1200">
+            <h2 class="text-dozen-light/60 font-serif tracking-[0.4em] mb-4 text-xs md:text-sm uppercase italic">Est. 2023</h2>
+            <h1 class="text-5xl md:text-8xl font-serif font-bold text-dozen-light tracking-[0.15em] mb-8 leading-tight">
+                蒔貳單簧管重奏團
+            </h1>
+            <div class="h-[1px] w-24 bg-dozen-light/30 mx-auto mb-8"></div>
+            <p class="text-dozen-light/80 font-light tracking-[0.2em] max-w-2xl mx-auto leading-loose text-sm md:text-base">
+                用單簧管演繹音樂，讓溫暖的音色走進人心<br>在群眾中發聲發光
+            </p>
+        </div>
+    </header>
+
+    <!-- 關於蒔貳 & 大合照 -->
+    <section id="about" class="py-32 px-8">
+        <div class="max-w-5xl mx-auto" data-aos="fade-up">
+            <div class="flex flex-col items-center text-center mb-16">
+                <span class="text-xs tracking-[0.5em] text-dozen-light/40 uppercase mb-4">The Story</span>
+                <h3 class="text-3xl font-serif font-bold mb-12 text-dozen-light tracking-widest">關於蒔貳</h3>
+                <p class="text-lg leading-loose text-dozen-light/80 font-light tracking-widest text-justify md:text-center max-w-4xl">
+                    「蒔貳單簧管重奏團」成員來自各行各業之社會人士且具有長年演出經驗，因為喜愛單簧管溫暖的音色而自發組成。
+                    我們致力於用不同的曲目演繹音樂，藉由室內樂的細膩互動，拉近聽眾與經典作品的距離，期望每一場演出都能在聽眾心中留下溫熱的回憶。
+                </p>
+            </div>
+            
+            <!-- 樂團大合照展示區 -->
+            <div class="w-full aspect-[21/9] md:aspect-[2.5/1] overflow-hidden rounded-sm bg-dozen-dark border border-white/10 relative group mt-8 shadow-2xl">
+                <!-- 預設讀取 group_photo.jpg，請將您的大合照改名為此名稱並放在同資料夾 -->
+                <img src="group_photo.jpg" alt="蒔貳單簧管重奏團大合照" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/1200x500/2F3C3D/F2EDEA?text=Dozen+Ensemble+Group+Photo'">
+                <!-- 漸層疊加層：讓照片上下方略微變暗，更能融入深色背景 -->
+                <div class="absolute inset-0 bg-gradient-to-t from-dozen-slate/90 via-transparent to-transparent opacity-80 pointer-events-none"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 演出紀錄 -->
+    <section id="performances" class="py-24 px-8 bg-dozen-dark/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20 text-center" data-aos="fade-up">
+                <span class="text-xs tracking-[0.5em] text-dozen-light/40 uppercase mb-4">Past Concerts</span>
+                <h3 class="text-3xl font-serif font-bold text-dozen-light tracking-widest">演出紀錄</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <!-- 卡片 1 -->
+                <div class="card-modern rounded-sm" data-aos="fade-up" data-aos-delay="100">
+                    <div class="concert-img-container">
+                        <!-- 請將 placeholder1.jpg 替換成您的實際照片檔名 -->
+                        <img src="placeholder1.jpg" alt="2023.10 全裕診所開幕" onerror="this.src='https://placehold.co/600x400/2F3C3D/F2EDEA?text=2023.10+Opening'">
+                    </div>
+                    <div class="p-8">
+                        <span class="text-xs font-bold text-dozen-light/40 tracking-widest uppercase">2023.10</span>
+                        <h4 class="text-xl font-serif font-bold text-dozen-light mt-2 mb-6">全裕診所開幕音樂會</h4>
+                        <a href="https://drive.google.com/drive/folders/1R4F4s2Hml34KFZHn3dh2ciKtPfwIY7NQ?usp=drive_link" target="_blank" class="text-xs tracking-widest border-b border-dozen-light/20 pb-1 hover:border-dozen-light transition italic">
+                            Listen to Audio →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 卡片 2 -->
+                <div class="card-modern rounded-sm" data-aos="fade-up" data-aos-delay="200">
+                    <div class="concert-img-container">
+                        <!-- 請將 placeholder2.jpg 替換成您的實際照片檔名 -->
+                        <img src="placeholder2.jpg" alt="2023.12 台大癌醫院慶" onerror="this.src='https://placehold.co/600x400/2F3C3D/F2EDEA?text=2023.12+NTU+Cancer+Center'">
+                    </div>
+                    <div class="p-8">
+                        <span class="text-xs font-bold text-dozen-light/40 tracking-widest uppercase">2023.12</span>
+                        <h4 class="text-xl font-serif font-bold text-dozen-light mt-2 mb-6">台大癌醫院慶義演</h4>
+                        <a href="https://drive.google.com/drive/folders/10KijJXkn7dhdzEPmBUVpvLIYlOQ7MMte?usp=drive_link" target="_blank" class="text-xs tracking-widest border-b border-dozen-light/20 pb-1 hover:border-dozen-light transition italic">
+                            Watch Video →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 卡片 3 -->
+                <div class="card-modern rounded-sm" data-aos="fade-up" data-aos-delay="300">
+                    <div class="concert-img-container">
+                        <!-- 請將 placeholder3.jpg 替換成您的實際照片檔名 -->
+                        <img src="placeholder3.jpg" alt="2024.10 創團音樂會" onerror="this.src='https://placehold.co/600x400/2F3C3D/F2EDEA?text=2024.10+Inaugural+Concert'">
+                    </div>
+                    <div class="p-8">
+                        <span class="text-xs font-bold text-dozen-light/40 tracking-widest uppercase">2024.10</span>
+                        <h4 class="text-xl font-serif font-bold text-dozen-light mt-2 mb-6">蒔貳創團音樂會</h4>
+                        <a href="https://www.icloud.com/sharedalbum/#B1uGWZuqDiGnLHe" target="_blank" class="text-xs tracking-widest border-b border-dozen-light/20 pb-1 hover:border-dozen-light transition italic">
+                            Photo Album →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 卡片 4 -->
+                <div class="card-modern rounded-sm" data-aos="fade-up" data-aos-delay="100">
+                    <div class="concert-img-container">
+                        <!-- 請將 placeholder4.jpg 替換成您的實際照片檔名 -->
+                        <img src="placeholder4.jpg" alt="2025.07 年度音樂會" onerror="this.src='https://placehold.co/600x400/2F3C3D/F2EDEA?text=2025.07+Annual+Concert'">
+                    </div>
+                    <div class="p-8">
+                        <span class="text-xs font-bold text-dozen-light/40 tracking-widest uppercase">2025.07</span>
+                        <h4 class="text-xl font-serif font-bold text-dozen-light mt-2 mb-6">蒔貳單簧管年度音樂會</h4>
+                        <a href="https://drive.google.com/drive/folders/12mH0jPZZ6WLu8NHtFexpQ5zVSF9E9qmv" target="_blank" class="text-xs tracking-widest border-b border-dozen-light/20 pb-1 hover:border-dozen-light transition italic">
+                            Archives →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 卡片 5 -->
+                <div class="card-modern rounded-sm" data-aos="fade-up" data-aos-delay="200">
+                    <div class="concert-img-container">
+                        <!-- 請將 placeholder5.jpg 替換成您的實際照片檔名 -->
+                        <img src="placeholder5.jpg" alt="2025.12 畫展開幕" onerror="this.src='https://placehold.co/600x400/2F3C3D/F2EDEA?text=2025.12+Exhibition+Opening'">
+                    </div>
+                    <div class="p-8">
+                        <span class="text-xs font-bold text-dozen-light/40 tracking-widest uppercase">2025.12</span>
+                        <h4 class="text-xl font-serif font-bold text-dozen-light mt-2 mb-6">永恆之境畫展開幕音樂會</h4>
+                        <a href="https://drive.google.com/drive/folders/1O65SrRe_bKmU6Au7P9b0pRE4QNdFTd3Q?usp=sharing" target="_blank" class="text-xs tracking-widest border-b border-dozen-light/20 pb-1 hover:border-dozen-light transition italic">
+                            Performance Audio →
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 卡片 6 (其他亮點輪播 Carousel) -->
+                <div class="card-modern rounded-sm relative flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                    <div class="concert-img-container relative group overflow-hidden">
+                        <!-- 標籤 -->
+                        <div class="absolute top-4 left-4 bg-dozen-dark/80 px-3 py-1 rounded-sm text-[10px] tracking-widest text-dozen-light uppercase z-20 backdrop-blur-sm border border-white/10">
+                            More Highlights
+                        </div>
+                        
+                        <!-- 輪播圖片 -->
+                        <img id="carousel-img" src="placeholder_other1.jpg" alt="2024.01 輔大校友音樂會" 
+                             style="transition: transform 0.6s ease, opacity 0.4s ease;" 
+                             onerror="this.src='https://placehold.co/600x400/2F3C3D/F2EDEA?text=2024.01+FJU+Alumni'">
+                        
+                        <!-- 左箭頭 -->
+                        <button onclick="prevSlide()" class="absolute left-2 top-1/2 -translate-y-1/2 bg-dozen-dark/70 hover:bg-dozen-slate text-dozen-light w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover:opacity-100 transition-all z-20 backdrop-blur-sm border border-white/10 shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg>
+                        </button>
+                        <!-- 右箭頭 -->
+                        <button onclick="nextSlide()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-dozen-dark/70 hover:bg-dozen-slate text-dozen-light w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover:opacity-100 transition-all z-20 backdrop-blur-sm border border-white/10 shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+                        </button>
+                    </div>
+                    
+                    <div class="p-8 flex-1 flex flex-col justify-between z-10 bg-[#354345]">
+                        <div>
+                            <!-- 輪播文字 -->
+                            <span id="carousel-date" class="text-xs font-bold text-dozen-light/40 tracking-widest uppercase transition-opacity duration-300">2024.01</span>
+                            <h4 id="carousel-title" class="text-xl font-serif font-bold text-dozen-light mt-2 mb-6 transition-opacity duration-300">輔大校友音樂會</h4>
+                        </div>
+                        
+                        <!-- 底部指示點 (Indicators) -->
+                        <div class="flex space-x-3 items-center" id="carousel-indicators">
+                            <button onclick="setSlide(0)" class="w-2 h-2 rounded-full bg-dozen-light transition-all duration-300 hover:scale-150"></button>
+                            <button onclick="setSlide(1)" class="w-2 h-2 rounded-full bg-dozen-light/30 transition-all duration-300 hover:scale-150"></button>
+                            <button onclick="setSlide(2)" class="w-2 h-2 rounded-full bg-dozen-light/30 transition-all duration-300 hover:scale-150"></button>
+                            <button onclick="setSlide(3)" class="w-2 h-2 rounded-full bg-dozen-light/30 transition-all duration-300 hover:scale-150"></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 團員名單 -->
+    <section id="members" class="py-32 px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-20 text-center" data-aos="fade-up">
+                <span class="text-xs tracking-[0.5em] text-dozen-light/40 uppercase mb-4">Our Ensemble</span>
+                <h3 class="text-3xl font-serif font-bold text-dozen-light tracking-widest">團員名單</h3>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h5 class="text-dozen-light/30 text-[10px] uppercase tracking-[0.3em] mb-4">Eb Clarinet</h5>
+                    <div class="space-y-2 text-sm font-light tracking-[0.2em] text-dozen-light">
+                        <p>陳柏樺</p><p>楊朝智</p><p>施博鈞</p>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200" class="col-span-1">
+                    <h5 class="text-dozen-light/30 text-[10px] uppercase tracking-[0.3em] mb-4">Bb Clarinet</h5>
+                    <div class="grid grid-cols-1 gap-2 text-sm font-light tracking-[0.2em] text-dozen-light">
+                        <p>江宇青</p><p>林奐宇</p><p>林盈瑩</p><p>陳柏樺</p><p>游念庭</p>
+                        <p>巫金佳</p><p>黃尹岑</p><p>沈婕嫈</p><p>楊朝智</p><p>施博鈞</p>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <h5 class="text-dozen-light/30 text-[10px] uppercase tracking-[0.3em] mb-4">Alto Clarinet</h5>
+                    <div class="space-y-2 text-sm font-light tracking-[0.2em] text-dozen-light">
+                        <p>林盈瑩</p>
+                    </div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h5 class="text-dozen-light/30 text-[10px] uppercase tracking-[0.3em] mb-4">Bass Clarinet</h5>
+                    <div class="space-y-2 text-sm font-light tracking-[0.2em] text-dozen-light">
+                        <p>江宇青</p><p>陳沛盈</p><p>李其蔚</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾與聯絡 -->
+    <footer id="contact" class="bg-dozen-dark/50 py-32 px-8 border-t border-white/5">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <h3 class="text-2xl font-serif font-bold text-dozen-light tracking-widest mb-8">演出及合作邀約</h3>
+            <p class="text-dozen-light/60 font-light tracking-widest mb-12 text-sm leading-loose">
+                讓單簧管溫暖的共鳴，為您的場合增添優雅氣息。<br>
+                歡迎來信洽談，我們將盡快與您聯絡。
+            </p>
+            <a href="mailto:DozenCl.12@gmail.com" class="btn-primary">
+                Email US / DozenCl.12@gmail.com
+            </a>
+            
+            <div class="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-dozen-light/30 tracking-[0.3em] uppercase">
+                <p>© 2026 Dozen Clarinet Ensemble</p>
+                <p>Taiwan Clarinet Music</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 動畫腳本 -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // 初始化 AOS 滾動特效
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 120
+        });
+
+        // ======= 輪播圖 (Carousel) 邏輯 =======
+        const highlightSlides = [
+            { date: "2024.01", title: "輔大校友音樂會", img: "placeholder_other1.jpg", fallback: "https://placehold.co/600x400/2F3C3D/F2EDEA?text=2024.01+FJU+Alumni" },
+            { date: "2024.08", title: "三重一村空軍節", img: "placeholder_other2.jpg", fallback: "https://placehold.co/600x400/2F3C3D/F2EDEA?text=2024.08+Air+Force+Day" },
+            { date: "2024.10", title: "證券交易所音樂會", img: "placeholder_other3.jpg", fallback: "https://placehold.co/600x400/2F3C3D/F2EDEA?text=2024.10+TWSE+Concert" },
+            { date: "2024.12", title: "台大癌醫、慈濟義演", img: "placeholder_other4.jpg", fallback: "https://placehold.co/600x400/2F3C3D/F2EDEA?text=2024.12+Charity+Concert" }
+        ];
+        
+        let currentSlide = 0;
+        let slideInterval;
+
+        function updateSlide(index) {
+            const imgEl = document.getElementById('carousel-img');
+            const dateEl = document.getElementById('carousel-date');
+            const titleEl = document.getElementById('carousel-title');
+            const indicators = document.getElementById('carousel-indicators').children;
+
+            // 1. 觸發淡出
+            imgEl.style.opacity = 0;
+            dateEl.style.opacity = 0;
+            titleEl.style.opacity = 0;
+
+            // 2. 待淡出後（300毫秒）置換內容並淡入
+            setTimeout(() => {
+                const slide = highlightSlides[index];
+                
+                // 替換圖片，並設定載入失敗時的防呆預設圖
+                imgEl.src = slide.img;
+                imgEl.setAttribute('onerror', `this.src='${slide.fallback}'`);
+                
+                // 替換文字
+                dateEl.innerText = slide.date;
+                titleEl.innerText = slide.title;
+
+                // 更新指示點高亮狀態
+                for (let i = 0; i < indicators.length; i++) {
+                    if (i === index) {
+                        indicators[i].classList.remove('bg-dozen-light/30');
+                        indicators[i].classList.add('bg-dozen-light');
+                    } else {
+                        indicators[i].classList.remove('bg-dozen-light');
+                        indicators[i].classList.add('bg-dozen-light/30');
+                    }
+                }
+
+                // 觸發淡入
+                imgEl.style.opacity = 1;
+                dateEl.style.opacity = 1;
+                titleEl.style.opacity = 1;
+            }, 300); 
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % highlightSlides.length;
+            updateSlide(currentSlide);
+            resetInterval();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + highlightSlides.length) % highlightSlides.length;
+            updateSlide(currentSlide);
+            resetInterval();
+        }
+
+        function setSlide(index) {
+            currentSlide = index;
+            updateSlide(currentSlide);
+            resetInterval();
+        }
+
+        // 自動輪播計時器（每4秒切換）
+        function startInterval() {
+            slideInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % highlightSlides.length;
+                updateSlide(currentSlide);
+            }, 4000); 
+        }
+
+        // 重置計時器（當使用者手動點擊切換時，避免馬上又被自動輪播蓋過）
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+        // 頁面載入後啟動輪播
+        document.addEventListener('DOMContentLoaded', () => {
+            startInterval();
+        });
+    </script>
+</body>
+</html>
